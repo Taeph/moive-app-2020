@@ -1,48 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
-// 음식 리스트
-const foodILike = [
-  {
-    id : 1,
-    name : "A",
-    image : "https://cdn.pixabay.com/photo/2020/06/06/14/36/ice-5266805__340.jpg"
-  },
-  {
-    id : 2,
-    name : "B",
-    image : "https://cdn.pixabay.com/photo/2020/06/10/14/15/landscape-5282895__340.jpg"
-  },
-  {
-    id : 3,
-    name : "C",
-    image : "https://cdn.pixabay.com/photo/2020/06/11/09/26/snail-5285922__340.jpg"
-  },
-  {
-    id : 4,
-    name : "D",
-    image : "https://cdn.pixabay.com/photo/2020/06/11/18/18/guinea-pig-5287749__340.jpg"
-  },
-];
-
-// 음식 Component
-function Food({name, image}) {
-  return (
-    <div>
-      <h3>I love {name}</h3>
-      <img src={image} alt={name}/>
-    </div>
-  )
+// props 의 type 과 required 를 체크한다 (무조건 propTypes 로 다른 이름 불가능)
+/*
+Food.propTypes = {
+  name: propTypes.string.isRequired,
+  image: propTypes.string.isRequired,
+  rating: propTypes.number.isRequired
 }
+*/
 
-// App Component
-function App() {
-  return (
-    <div className="App">
-      { foodILike.map(dish => (
-        <Food key={dish.id} name={dish.name} image={dish.image} />
-      ))}
-    </div>
-  );
+class App extends Component {
+  // 동적인 값들은 state 사용
+  state = {
+    count : 0
+  };
+
+  // state 는 직접 값을 변경하지 않고, setState 사용
+  add = () => {
+    console.log("add");
+    this.setState (current => ({ count: current.count + 1}));
+  };
+
+  // minus 방식보다 add 방식이 더 좋은 방법
+  minus = () => {
+    const count = this.state.count;
+    console.log("minus");
+    this.setState ({ count: count-1});
+  };
+
+  // setState 를 호출 할 때 마다, React는 다시 render 한다.
+  render() {
+    return (
+      <div>
+        <h1>The number is : {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    )
+  }
 }
 
 export default App;
