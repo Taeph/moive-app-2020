@@ -19,6 +19,9 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
+    grid-gap: 100px;
     padding: 50px;
     padding-top: 70px;
     width: 80%;
@@ -28,9 +31,6 @@
     width: 45%;
     background-color: white;
     margin-bottom: 70px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
     font-weight: 300;
     padding: 20px;
     border-radius: 5px;
@@ -39,6 +39,14 @@
       0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   }
   
+  .movies .movie a {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+  }
+
   .movie img {
     position: relative;
     top: -50px;
